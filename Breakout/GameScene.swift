@@ -13,8 +13,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 {
     var ball = SKShapeNode()
     var paddle = SKSpriteNode()
-    var brick = SKSpriteNode()
     var loseZone = SKSpriteNode()
+    var bricks = [SKSpriteNode]()
+    var numBricks = 0
     
     override func didMove(to view: SKView)
     {
@@ -23,10 +24,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         createBackground()
         makeBall()
         makePaddle()
-        makeBrick()
+        layBricks()
         makeLoseZone()
         ball.physicsBody?.isDynamic = true
-        ball.physicsBody?.applyImpulse(CGVector(dx: 3, dy: 5))
+        ball.physicsBody?.applyImpulse(CGVector(dx: 3.5, dy: 5))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
@@ -48,11 +49,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        if contact.bodyA.node?.name == "brick" || contact.bodyB.node?.name == "brick"
+        if contact.bodyA.node?.name?.range(of: "brick") != nil || contact.bodyB.node?.name?.range(of: "brick") != nil
         {
-            print("You win!")
-            brick.removeFromParent()
-            ball.removeFromParent()
+            if(ball == contact.bodyA)
+            {
+                brickHit(brick: contact.bodyB.node! as! SKSpriteNode)
+            }
+            else
+            {
+                brickHit(brick: contact.bodyA.node! as! SKSpriteNode)
+            }
         }
         if contact.bodyA.node?.name == "loseZone" || contact.bodyB.node?.name == "loseZone"
         {
@@ -70,7 +76,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             starsBackground.zPosition = -1
             starsBackground.position = CGPoint(x: 0, y: starsBackground.size.height * CGFloat(i))
             addChild(starsBackground)
-            let moveDown = SKAction.moveBy(x: 0, y: -starsBackground.size.height, duration: 20)
+            let moveDown = SKAction.moveBy(x: 0, y: -starsBackground.size.height, duration: 60)
             let moveReset = SKAction.moveBy(x: 0, y: starsBackground.size.height, duration: 0)
             let moveLoop = SKAction.sequence([moveDown, moveReset])
             let moveForever = SKAction.repeatForever(moveLoop)
@@ -108,18 +114,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     func makePaddle()
     {
         paddle = SKSpriteNode(color: UIColor.white, size: CGSize(width: frame.width/4, height: 20))
-        paddle.position = CGPoint(x: frame.midX, y: frame.minY + 125)
+        paddle.position = CGPoint(x: 0, y: frame.minY + 125)
         paddle.name = "paddle"
         paddle.physicsBody = SKPhysicsBody(rectangleOf: paddle.size)
         paddle.physicsBody?.isDynamic = false
         addChild(paddle)
     }
     
-    func makeBrick()
+    func makeBrick(x: CGFloat, y: CGFloat, w: CGFloat, h: CGFloat, color: UIColor)
     {
-        brick = SKSpriteNode(color: UIColor.blue, size: CGSize(width: 50, height: 20))
-        brick.position = CGPoint(x: frame.midX, y: frame.maxY - 30)
-        brick.name = "brick"
+        var brick = SKSpriteNode()
+        bricks.append(brick)
+        brick = SKSpriteNode(color: color, size: CGSize(width: w, height: h))
+        brick.position = CGPoint(x: x, y: y)
+        brick.name = "brick\(numBricks)"
+        numBricks += 1
         brick.physicsBody = SKPhysicsBody(rectangleOf: brick.size)
         brick.physicsBody?.isDynamic = false
         addChild(brick)
@@ -134,7 +143,60 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         loseZone.physicsBody?.isDynamic = false
         addChild(loseZone)
     }
+    
+    func layBricks()
+    {
+        let numAcross = CGFloat(7)
+        let indWidth = frame.width/numAcross - 5/numAcross - 5
+        let indHeight = CGFloat(20)
+        for row in 1...3
+        {
+            var color = UIColor()
+            switch row
+            {
+            case 1:
+                color = UIColor.yellow
+            case 2:
+                color = UIColor.orange
+            default:
+                color = UIColor.red
+            }
+            for col in 1...Int(numAcross)
+            {
+                makeBrick(x: frame.minX+(indWidth+CGFloat(5))*CGFloat(col)-indWidth/2, y: frame.maxY-(indHeight+CGFloat(5))*CGFloat(row)-indHeight/2, w: indWidth, h: indHeight, color: color)
+            }
+        }
+    }
+    
+    func brickHit(brick: SKSpriteNode)
+    {
+        if brick.color == UIColor.red
+        {
+            brick.removeFromParent()
+        }
+        else if brick.color == UIColor.orange
+        {
+            brick.color = UIColor.red
+        }
+        else if brick.color == UIColor.yellow
+        {
+            brick.color = UIColor.orange
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
