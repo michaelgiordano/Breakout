@@ -64,6 +64,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             print("You lose")
             ball.removeFromParent()
+            reset()
+//            let alertController = UIAlertController(title: "Game Over", message: nil, preferredStyle: .alert)
+//            let mainMenuAction = UIAlertAction(title: "Main Menu", style: .default, handler: { (action) in
+//                <#code#>
+//            })
+//            let tryAgainAction = UIAlertAction(title: "Try Again", style: .default, handler: { (action) in
+//                reset()
+//            })
+//            alertController.addAction(mainMenuAction)
+//            alertController.addAction(tryAgainAction)
+//            present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -183,21 +194,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             brick.color = UIColor.orange
         }
     }
+    
+    func reset()
+    {
+        paddle.removeFromParent()
+        loseZone.removeFromParent()
+        numBricks = 0
+        bricks = [SKSpriteNode]()
+        layBricks()
+        makeBall()
+        makePaddle()
+        makeLoseZone()
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

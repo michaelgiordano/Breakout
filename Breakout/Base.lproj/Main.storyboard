@@ -1,14 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4lT-ur-Nv6">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="ARCADEPI.TTF">
+            <string>Arcadepix</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BV1-FR-VrT" customClass="GameViewController" customModule="Breakout" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
@@ -22,5 +31,152 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="kqX-O2-tux">
+            <objects>
+                <viewController storyboardIdentifier="PostViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cMc-33-Iol" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Sci-Hb-kXe"/>
+                        <viewControllerLayoutGuide type="bottom" id="uYb-xl-zXT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4yQ-lz-orq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stars" translatesAutoresizingMaskIntoConstraints="NO" id="4Xc-ks-tID">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1B-On-Lqn">
+                                <rect key="frame" x="20" y="28" width="335" height="71"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="9tO-vz-okn"/>
+                                    <constraint firstAttribute="width" constant="335" id="Hd0-c6-qx4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arcadepix" family="Arcadepix" pointSize="50"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4IT-kJ-XOn">
+                                <rect key="frame" x="59" y="381" width="257" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="257" id="gqC-1h-NOO"/>
+                                    <constraint firstAttribute="height" constant="45" id="ooW-Ss-jvw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arcadepix" family="Arcadepix" pointSize="36"/>
+                                <state key="normal" title="Try Again">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="mKJ-90-VCy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6eJ-uh-XFY">
+                                <rect key="frame" x="59" y="466" width="257" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Wzr-9c-mId"/>
+                                    <constraint firstAttribute="width" constant="257" id="wwn-1B-Prf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arcadepix" family="Arcadepix" pointSize="36"/>
+                                <state key="normal" title="Main Menu">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="j9u-iO-ik9" kind="unwind" unwindAction="unwindToInitialViewControllerWithSegue:" id="irh-9g-LFE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Xc-ks-tID" firstAttribute="top" secondItem="4yQ-lz-orq" secondAttribute="top" id="4CC-Ix-qh3"/>
+                            <constraint firstItem="6eJ-uh-XFY" firstAttribute="centerX" secondItem="4yQ-lz-orq" secondAttribute="centerX" id="AnI-Ps-jgE"/>
+                            <constraint firstItem="4IT-kJ-XOn" firstAttribute="centerX" secondItem="4yQ-lz-orq" secondAttribute="centerX" id="Fba-Vr-j2m"/>
+                            <constraint firstItem="4Xc-ks-tID" firstAttribute="leading" secondItem="4yQ-lz-orq" secondAttribute="leading" id="NBv-5p-FvY"/>
+                            <constraint firstItem="4IT-kJ-XOn" firstAttribute="centerY" secondItem="4yQ-lz-orq" secondAttribute="centerY" constant="70" id="OcE-RV-4qD"/>
+                            <constraint firstItem="6eJ-uh-XFY" firstAttribute="centerY" secondItem="4yQ-lz-orq" secondAttribute="centerY" constant="155" id="gyZ-eb-rPX"/>
+                            <constraint firstItem="uYb-xl-zXT" firstAttribute="top" secondItem="4Xc-ks-tID" secondAttribute="bottom" id="q89-CT-oIL"/>
+                            <constraint firstItem="r1B-On-Lqn" firstAttribute="centerX" secondItem="4yQ-lz-orq" secondAttribute="centerX" id="t49-Jc-8Xz"/>
+                            <constraint firstAttribute="trailing" secondItem="4Xc-ks-tID" secondAttribute="trailing" id="ukN-GA-yQS"/>
+                            <constraint firstItem="r1B-On-Lqn" firstAttribute="centerY" secondItem="4yQ-lz-orq" secondAttribute="centerY" constant="-270" id="uzk-2R-6fc"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="40b-Vt-MXU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="j9u-iO-ik9" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="33" y="-680"/>
+        </scene>
+        <!--TitleViewController-->
+        <scene sceneID="K9c-mr-eYt">
+            <objects>
+                <viewController title="TitleViewController" id="4lT-ur-Nv6" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3lv-CF-iKq"/>
+                        <viewControllerLayoutGuide type="bottom" id="m8S-l1-U9I"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R9e-VX-FqQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stars" translatesAutoresizingMaskIntoConstraints="NO" id="BcY-zo-Zal">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Breakout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flj-xh-HV2">
+                                <rect key="frame" x="0.0" y="28" width="375" height="93"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="OnR-UK-Bc7"/>
+                                    <constraint firstAttribute="height" constant="93" id="ZTZ-Pb-m3Y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arcadepix" family="Arcadepix" pointSize="60"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUv-Q0-P5f">
+                                <rect key="frame" x="48" y="444" width="279" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="77" id="lC6-fp-Nq1"/>
+                                    <constraint firstAttribute="width" constant="279" id="rxI-YX-Mqi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arcadepix" family="Arcadepix" pointSize="46"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="Hiy-dd-xuz"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brick" translatesAutoresizingMaskIntoConstraints="NO" id="8Q0-VF-8h0">
+                                <rect key="frame" x="41" y="154" width="292" height="208"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="292" id="Hfb-pv-Wod"/>
+                                    <constraint firstAttribute="height" constant="208" id="MCz-Zr-6Kz"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FUv-Q0-P5f" firstAttribute="centerX" secondItem="R9e-VX-FqQ" secondAttribute="centerX" id="A7Q-7g-QTA"/>
+                            <constraint firstItem="8Q0-VF-8h0" firstAttribute="centerY" secondItem="R9e-VX-FqQ" secondAttribute="centerY" constant="-75.5" id="Fws-XS-wsP"/>
+                            <constraint firstItem="FUv-Q0-P5f" firstAttribute="centerY" secondItem="R9e-VX-FqQ" secondAttribute="centerY" constant="149" id="NZg-fP-9Es"/>
+                            <constraint firstItem="m8S-l1-U9I" firstAttribute="top" secondItem="BcY-zo-Zal" secondAttribute="bottom" id="O18-gL-NJv"/>
+                            <constraint firstAttribute="trailing" secondItem="BcY-zo-Zal" secondAttribute="trailing" id="P4R-VL-frz"/>
+                            <constraint firstItem="flj-xh-HV2" firstAttribute="centerY" secondItem="R9e-VX-FqQ" secondAttribute="centerY" constant="-259" id="Wfl-EQ-fsi"/>
+                            <constraint firstItem="8Q0-VF-8h0" firstAttribute="centerX" secondItem="R9e-VX-FqQ" secondAttribute="centerX" id="Zjc-ql-TQI"/>
+                            <constraint firstItem="flj-xh-HV2" firstAttribute="centerX" secondItem="R9e-VX-FqQ" secondAttribute="centerX" id="ebz-25-MuV"/>
+                            <constraint firstItem="BcY-zo-Zal" firstAttribute="top" secondItem="R9e-VX-FqQ" secondAttribute="top" id="wb1-sH-Rbe"/>
+                            <constraint firstItem="BcY-zo-Zal" firstAttribute="leading" secondItem="R9e-VX-FqQ" secondAttribute="leading" id="xxL-LG-TYU"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="siz-jl-CXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-751.20000000000005" y="37.331334332833585"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="brick" width="495" height="410"/>
+        <image name="stars" width="589" height="1024"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="mKJ-90-VCy"/>
+    </inferredMetricsTieBreakers>
 </document>
